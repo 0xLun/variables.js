@@ -27,7 +27,7 @@ past this code at the end of the body element.
   vars.fill();
 </script>
 ```
-#### Example
+# Example
 
 my_file.js
 ```javascript

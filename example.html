@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="variables.js"></script>
+  </head>
+  <body>
+
+    <script>
+      var variable =  "Hello World !";
+      var object = {
+        title : "Super Heroes !",
+        array : [
+          {id: "Deadpool", names : ["Wade Wilson","wiwi"]},
+          {id: "BlackPanther", names :["T'Challa"]},
+        ]
+      }
+    </script>
+
+    <var>variable</var> <br>
+    <var>variable="Oups !.."</var> <br>
+    <hr>
+    <var data-loop="object.array">
+      <h2><i><var>id</var></i></h2> 
+      <p>
+        <i>
+          <var data-loop="names">
+            <var></var>,
+          </var>
+        </i>
+      </p>
+    </var>
+
+    <script>
+      vars = new Variables("var");
+      vars.fill();
+    </script>
+
+  </body>
+</html>

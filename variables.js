@@ -79,7 +79,7 @@ class Variables{
            else{
             els[i].replaceWith(document.createTextNode(eval(els[i].textContent)));
            } 
-        }catch(error){console.error(error);}
+        }catch(error){/*console.error(error);*/}
        }
        this.remove_tag_css();
   }
@@ -92,7 +92,7 @@ class Variables{
     for(var i=0; i < loop_els.length; i++){
       try {
         this.loop_fill(loop_els[i], loop_els[i].getAttribute('data-loop'));
-      }catch(error){console.error(error);}
+      }catch(error){/*console.error(error);*/}
     }
   }
 

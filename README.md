@@ -1,6 +1,11 @@
 [![version](https://img.shields.io/badge/version-0.1.1-red.svg)](https://semver.org)
 # variables.js
 
+```variable.js``` allows to echo javascript variables via html tags. Tags are replaced by variables values when the html page is fully loaded. 
+
+But be careful, this library might spoil your SEO efforts because search engine's bots may not execute javascript. 
+
+
 # Getting Started
 #### 1 . Download the ```variables.js``` file
 #### 2 . Link ```variables.js``` with your html file. 

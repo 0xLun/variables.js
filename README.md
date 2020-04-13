@@ -29,6 +29,43 @@ past this code at the end of the body element.
 </script>
 ```
 # Example
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="variables.js"></script>
+  </head>
+  <body>
+   
+    <script>
+     var variable =  "Hello World !";
+    </script>
+   
+    <var>variable</var> <br>
+   
+    <script>
+      vars = new Variables("var");
+      vars.fill();
+    </script>
+   
+ </body>
+</html>
+```
+
+The last part in the previous code allows you to fill variables with their corresponding values.
+```html
+    <script>
+      vars = new Variables("var");
+      vars.fill();
+    </script>
+```
+
+```Variables("var")``` specify that you want to use ```var``` tags to display your variables. 
+
+```vars.fill()``` fill each variable with it corresponding values.
+
+# Advanced features 
 
 my_file.js
 ```javascript
@@ -41,6 +78,7 @@ var object = {
   ]
 }
 ```
+
 index.html
 ```html
 <!DOCTYPE html>
@@ -72,16 +110,3 @@ index.html
 </html>
 ```
 
-The last part in the previous code allows you to fill variables with their corresponding values.
-```html
-    <script>
-      vars = new Variables("var");
-      vars.fill();
-    </script>
-```
-
-```Variables("var")``` specify that you want to use ```var``` tags to display your variables. 
-
-```vars.fill()``` fill each variable with it corresponding values.
-
-# Advanced features 

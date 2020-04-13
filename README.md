@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/badge/version-0.1.1-yellow.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-0.1.1-red.svg)](https://semver.org)
 # variables.js
 
 # Getting Started

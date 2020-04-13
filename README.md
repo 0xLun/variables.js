@@ -7,7 +7,7 @@ You can choose the html tag you want to use to echo your variables but by defaul
 
 Thanks to ```variables.js``` you can echo simple javascript variables but also javascript objects and javascript arrays. 
 
-But be careful, this library might spoil your SEO efforts because search engine's bots may not execute javascript. 
+Note : Be careful, this library might spoil your SEO efforts because search engine's bots may not execute javascript. 
 
 
 # Getting Started

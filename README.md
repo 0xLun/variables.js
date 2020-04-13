@@ -3,6 +3,10 @@
 
 ```variable.js``` allows to echo javascript variables via html tags. Tags are replaced by variables values when the html page is fully loaded. 
 
+You can choose the html tag you want to use to echo your variables but by default ```var``` tag is used. 
+
+Thanks to ```variables.js``` you can echo simple javascript variables but also javascript objects and javascript arrays. 
+
 But be careful, this library might spoil your SEO efforts because search engine's bots may not execute javascript. 
 
 

@@ -5,7 +5,7 @@
 #### 2 . Link ```variables.js``` with your html file. 
 ```html
  <script src="variables.js"></script>
-
+```
 #### 3 . Create javascript variable 
 ```html
 <script>
@@ -31,7 +31,6 @@ past this code at the end of the body element.
 
 my_file.js
 ```javascript
-// 
 var variable =  "Hello World !";
 var object = {
   title : "Super Heroes !",
@@ -79,7 +78,9 @@ The last part in the previous code allows you to fill variables with their corre
       vars.fill();
     </script>
 ```
+
 ```Variables("var")``` specify that you want to use ```var``` tags to display your variables. 
+
 ```vars.fill()``` fill each variable with it corresponding values.
 
 # Advanced features 

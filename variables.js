@@ -25,29 +25,30 @@ SOFTWARE.
 */
 
 /*
-BE CAREFUL !!!!!! This library might spoil your SEO efforts because search engine's bots may not execute javascript. 
+BE CAREFUL !!!!!! This library might spoil your SEO efforts because search engine's bots may not execute javascript.
 
 */
 
 
 class Variables{
 
-  constructor(tag="var", keep_tag=false){
+  constructor(tag="var", keep_tag=false, html=true){
     this.keep_tag = keep_tag; //if you want to preserve the variable tag after treatment
+    this.html = html; //if you want html tag to not be escaped
     this.tag = tag; //HTML to consider as a variable
     this.prepare_document();
     this.logs = ""; //logs buffer
-  
+
   }
 
-  //append data in the log's buffer 
+  //append data in the log's buffer
   log(string){
     this.logs += "\n\n"+string;
   }
 
-  //setting the document (css and events) to make sure the library will work well without 
+  //setting the document (css and events) to make sure the library will work well without
   //arming host's program
-  prepare_document(){ 
+  prepare_document(){
     var style = document.createElement("style");
     style.innerHTML = "\
       var{font-size: inherit !important; font-style: inherit !important; margin: 0px !important; }\
@@ -56,36 +57,45 @@ class Variables{
     //  window.onload =  this.execute;
   }
 
-  //clean some css that may have modified textContent 
+  //clean some css that may have modified textContent
   set_tag_css(elements){
     for (var i = 0; i < elements.length; i++) elements[i].style.textTransform = "none";
   }
 
-  // Remove all useless css that was added during treatment 
+  // Remove all useless css that was added during treatment
   remove_tag_css(){
     var els = document.getElementsByTagName(this.tag);
     for (var i = 0; i < els.length; i++) els[i].removeAttribute('style');
   }
 
-  //replace all variable tags by their textContent evaluation. 
-  // allows transformation from text to javascript object/variable. 
+  //replace all variable tags by their textContent evaluation.
+  // allows transformation from text to javascript object/variable.
   render_tags(){
        var els = Array.from(document.getElementsByTagName(this.tag));
+       var to_remove = [];
        this.set_tag_css(els);
        var el;
        for(var i=0; i < els.length; i++){
          try {
-           if(this.keep_tag) els[i].innerHTML = eval(els[i].textContent);
+           if(this.html){
+             if(this.keep_tag) els[i].insertAdjacentHTML("beforebegin", "<var>"+eval(els[i].textContent)+"</var>");
+             else els[i].insertAdjacentHTML("beforebegin", eval(els[i].textContent));
+             to_remove.push(els[i]);
+           }
            else{
-            els[i].replaceWith(document.createTextNode(eval(els[i].textContent)));
-           } 
+              if(this.keep_tag) els[i].innerHTML(eval(els[i].textContent));
+              else els[i].replaceWith(document.createTextNode(eval(els[i].textContent)));
+           }
         }catch(error){console.error(error);}
+       }
+       for(var i=0; i < to_remove.length; i++){
+         to_remove[i].remove();
        }
        this.remove_tag_css();
   }
 
-  //Allows usage of loops 
-  //Allow to render recursively all occurence in an array 
+  //Allows usage of loops
+  //Allow to render recursively all occurence in an array
   // <var data-loop="<array_object_name>">.....</var>
   render_loops(){
     var loop_els = document.querySelectorAll('[data-loop]');
@@ -96,7 +106,7 @@ class Variables{
     }
   }
 
-  //given a loop element , this fonction will fill and render elements inner it. 
+  //given a loop element , this fonction will fill and render elements inner it.
   loop_fill(loop, string){
 
     var loop_again = false;
@@ -104,7 +114,7 @@ class Variables{
     var replica = loop.innerHTML;
     loop.innerHTML = "";
     var array = eval(string);
-    
+
     for(var i=0; i < array.length; i++){
       prefix = string+"["+i+"]";
       var node = document.createElement('div');
@@ -118,8 +128,8 @@ class Variables{
     return loop_again;
   }
 
-  //transform loops tags in several simple variable tags using the array name (prefix) given in the 
-  //data-loop attribute. If several loops are nested. A recursive call to loop_fill is used. 
+  //transform loops tags in several simple variable tags using the array name (prefix) given in the
+  //data-loop attribute. If several loops are nested. A recursive call to loop_fill is used.
   parse(els, prefix){
     var loop_again = false;
     for(var t=0; t < els.length; t++){
@@ -133,7 +143,7 @@ class Variables{
         }
         //if the element contain a attribute. it's a dictionnary
         else if(els[t].textContent) els[t].innerHTML = prefix+"."+els[t].textContent+";";
-    
+
         //if the element is empty --> it's an classic array !
         else els[t].innerHTML = prefix+";";
       }

@@ -83,10 +83,16 @@ class Variables{
              to_remove.push(els[i]);
            }
            else{
+<<<<<<< HEAD
               if(this.keep_tag) els[i].innerHTML(eval(els[i].textContent));
               else els[i].replaceWith(document.createTextNode(eval(els[i].textContent)));
            }
         }catch(error){console.error(error);}
+=======
+            els[i].replaceWith(document.createTextNode(eval(els[i].textContent)));
+           } 
+        }catch(error){/*console.error(error);*/}
+>>>>>>> c1c7dbd22176802028548e73387cff61c848889f
        }
        for(var i=0; i < to_remove.length; i++){
          to_remove[i].remove();
@@ -102,7 +108,7 @@ class Variables{
     for(var i=0; i < loop_els.length; i++){
       try {
         this.loop_fill(loop_els[i], loop_els[i].getAttribute('data-loop'));
-      }catch(error){console.error(error);}
+      }catch(error){/*console.error(error);*/}
     }
   }
 
